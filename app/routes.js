@@ -15,14 +15,14 @@ module.exports = function(app, passport) {
     app.get('/login', function(req, res) {
 
         // render the page and pass in any flash data if it exists
-        res.render('login.ejs', { message: req.flash('loginMessage') });
+        res.render('login.ejs', {message: req.flash('loginMessage')});
     });
 
     // process the login form
     app.post('/login', passport.authenticate('local-login', {
-        successRedirect : '/profile', // redirect to the secure profile section
-        failureRedirect : '/login', // redirect back to the signup page if there is an error
-        failureFlash : true // allow flash messages
+        successRedirect: '/profile', // redirect to the secure profile section
+        failureRedirect: '/login', // redirect back to the signup page if there is an error
+        failureFlash: true // allow flash messages
     }));
 
     // =====================================
@@ -32,7 +32,7 @@ module.exports = function(app, passport) {
     app.get('/signup', function(req, res) {
 
         // render the page and pass in any flash data if it exists
-        res.render('signup.ejs', { message: req.flash('signupMessage') });
+        res.render('signup.ejs', {message: req.flash('signupMessage')});
     });
 
     // process the signup form
@@ -49,7 +49,7 @@ module.exports = function(app, passport) {
     // we will use route middleware to verify this (the isLoggedIn function)
     app.get('/profile', isLoggedIn, function(req, res) {
         res.render('profile.ejs', {
-            user : req.user // get the user out of session and pass to template
+            user: req.user // get the user out of session and pass to template
         });
     });
 
@@ -73,15 +73,27 @@ module.exports = function(app, passport) {
         failureRedirect: '/'
     }));
 
+    // =====================================
+    // TWITTER ROUTES ======================
+    // =====================================
+    // route for twitter authentication and login
+    app.get('/auth/twitter', passport.authenticate('twitter'));
+
+    // handle the callback after twitter has authenticated the user
+    app.get('/auth/twitter/callback', passport.authenticate('twitter', {
+        successRedirect: '/profile',
+        failureRedirect: '/'
+    }));
+
 };
 
 // route middleware to make sure a user is logged in
 function isLoggedIn(req, res, next) {
 
-    // if user is authenticated in the session, carry on
-    if (req.isAuthenticated())
-        return next();
+// if user is authenticated in the session, carry on
+if (req.isAuthenticated())
+    return next();
 
-    // if they aren't redirect them to the home page
-    res.redirect('/');
+// if they aren't redirect them to the home page
+res.redirect('/');
 }
