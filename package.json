@@ -1,0 +1,43 @@
+{
+  "name": "2fa-demo",
+  "version": "1.0.0",
+  "description": "A simple demo of 2 factor authentication done with NodeJS and Passport.",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ligletg/2FA-demo.git"
+  },
+  "keywords": [
+    "2FA",
+    "passport",
+    "NodeJS",
+    "authentication"
+  ],
+  "author": "Gregoire Liglet <gregoire.liglet@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ligletg/2FA-demo/issues"
+  },
+  "homepage": "https://github.com/ligletg/2FA-demo#readme",
+  "dependencies": {
+    "bcrypt-nodejs": "0.0.3",
+    "body-parser": "^1.15.2",
+    "connect-flash": "^0.1.1",
+    "cookie-parser": "^1.4.3",
+    "ejs": "^2.5.2",
+    "express": "^4.14.0",
+    "express-session": "^1.14.2",
+    "method-override": "^2.3.6",
+    "mongoose": "^4.6.7",
+    "morgan": "^1.7.0",
+    "passport": "^0.3.2",
+    "passport-facebook": "^2.1.1",
+    "passport-google-auth": "^1.0.1",
+    "passport-local": "^1.0.0",
+    "passport-twitter": "^1.0.4"
+  }
+}
